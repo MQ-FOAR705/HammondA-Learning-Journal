@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+\begin{titlepage}
+\title{Learning Journal}
+\author{Aaron Hammond\\
+FOAR705 - Digital Humanities}
+\maketitle
+\end{titlepage}
+\newcounter{problem}
+\addtocounter{problem}{1}
+
+
+\section{FOAR705 Week 2}
+
+\vspace{20}
+\textbf{1. Data Carpentry}\newline
+
+\underline{1.1 Formatting data tables in Spreadsheets}
+\linebreak
+
+
+Questions:\\
+\textit{1.What are some common challenges with formatting data in spreadsheets and how can we avoid them?}\\
+\\
+The largest challenge with spreadsheets is formatting the information in a manner in which the information can be easily read regardless of who looks at it. The spreadsheet should be written that no prior knowledge is required to decode the information inside it. This means restricting the use of colours or any sort of coding device and instead extend the data table to include the additional information.\\
+\\
+Exercises:\\
+\textit{1. Identify what is wrong with this spreadsheet (SAFI messy). Discuss the steps you would need to take to clean up the two tabs, and to put them all together in one spreadsheet}\\
+\begin{enumerate}
+    \item Rename SAFI\_messy to SAFI\_raw
+    \item Create a new spreadsheet titled SAFI\_0.1
+    \item In a single spreadsheet copy and paste the information from Mozambique 
+    \item Label the headings of the columns as follows A. country B. key\_id C. type\_roof D. type\_floor E. no\_rooms F. includes\_barn G. oxen H. poultry I. goats J. cows K. total\_livestock L. no\_plots M. water\_use N. comments (for cowshed, look after cows, only in summer, dead cows info)
+    \item Organise the data according to the information as possible, consolidating as many lines as needed and using Cut+Copy functions to ensure no doubling of data or missing of information
+    \item Copy data from Tanzania into the same spreadsheet (delete empty tab)
+    \item Populate the country field while organise the data according to the same principles used for Mozambique
+    \item Delete any obviously incorrect data (e.g. -999) and replace with (Null) value to indicate the information collected for this field is not entirely credible
+    \item Save changes
+\end{enumerate}
+\textit{2. Discuss this data with a partner and make a list of some of the types of metadata that should be recorded about this dataset}\\
+\begin{enumerate}
+    \item Who attended these interviews?
+    \item What does the use of liv mean in the columns?
+    \item How often is frequently ?
+    \item Does months\_lack\_food mean no meals or not a sufficient number of meals?
+    \item instanceID is used in what type of software?
+\end{enumerate}\leavevmode\newline
+
+
+\newline \textbf{2. Journal} \date{15/08/2019}\\
+\vspace{5mm}
+
+Problem\_ID\theproblem
+\addtocounter{problem}{1}
+\begin{itemize}
+    \item Intention: Create a line break in LaTeX
+    \item Action: Used the Rich Text tab and pressed enter
+    \item Result: No line break
+    \item Improvements or Solutions: Researched and found command "newline" to assist with formatting.
+\end{itemize}
+\vspace{10mm}
+Problem\_ID\theproblem
+\addtocounter{problem}{1}
+\begin{itemize}
+    \item Intention: Create a custom title for each page
+    \item Action: Used the 'title' command and 'maketitle' in different combinations
+    \item Result: No title added
+    \item Improvements or Solutions: Instead use the title page function for the initial title and utilise 'sections' instead to group areas of my work.
+\end{itemize}
+\vspace{10mm}
+Problem\_ID\theproblem
+\addtocounter{problem}{1}
+\begin{itemize}
+    \item Intention: Create a numbered bullet list
+    \item Action: Used 'itemize' command
+    \item Result: Bulletted list without numbers
+    \item Improvements or Solutions: Instead utilise the enumerate command for numbered lists
+\end{itemize}
+\vspace{10mm}
+Problem\_ID\theproblem
+\addtocounter{problem}{1}
+\begin{itemize}
+    \item Intention: Use the underscore in naming conventions
+    \item Action: Quoted a filename which utilised the \_ character
+    \item Result: Massive issues in formatting and text running off the page
+    \item Improvements or Solutions: When using underscores the backslash command must be used before the \_ symbol to ensure formatting remains intact
+\end{itemize}
+\vspace{10mm}
+
+Problem\_ID\theproblem
+\addtocounter{problem}{1}
+\begin{itemize}
+    \item Intention: Create a counter so i don't have to manually count my problems
+    \item Action: Created a counter and attempted to use stepcounter to print and increase it's value by 1 
+    \item Result: Step counter did not print any characters
+    \item Improvements or Solutions: Instead i used the counter command and referenced it using 'thecounter' and increased its value by 1 using 'addtocounter'afterwards
+\end{itemize}
+\vspace{10mm}
+ 
+ Problem\_ID\theproblem
+ \addtocounter{problem}{1}
+\begin{itemize}
+    \item Intention: Fix the formatting issues caused by ending lists with vspace
+    \item Action: Added vspace to the first Problem\_ID
+    \item Result: All Problem\_IDs after the first are aligned differently
+    \item Improvements or Solutions: Perhaps using a command other than vspace for formatting
+\end{itemize}
+\hspace{10mm}
+
+
+
+\end{document}
