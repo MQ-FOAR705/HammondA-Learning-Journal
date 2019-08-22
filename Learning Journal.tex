@@ -2,24 +2,10 @@
  
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage{titlesec}
  
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
- 
-\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{problem}[2][Problem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{question}[2][Question]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
-\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
 \begin{document}
  
 % --------------------------------------------------------------
@@ -35,10 +21,10 @@ FOAR705 - Digital Humanities}
 \addtocounter{problem}{1}
 
 
-\section{FOAR705 Week 2}
+\begin{section}{FOAR705 Week 2}
 
 \vspace{20}
-\subsection{Data Carpentry}
+\subsection{Data Carpentry (Spreadsheets)}
 
 \underline{Formatting data tables in Spreadsheets}
 \linebreak
@@ -132,5 +118,28 @@ Problem\_ID\theproblem
     \item Result: All Problem\_IDs after the first are aligned differently
     \item Improvements or Solutions: Perhaps using a command other than vspace for formatting
 \end{itemize}
+
+\clearpage
+\end{section}
+
+\begin{section}{FOAR705 Week 3}
+
+\begin{subsection}{Data Carpentry (Spreadsheets)}
+\subsubsection{Date formats in spreadsheets}
+\paragraph{Question: What year is shown in the year column?} ~\\
+When adding data point '17/11' into the interview date column the Year column (formatted as =YEAR(A\$)) populates the field with '2019' (or the current year)
+\newline
+\paragraph{Key Points}
+\begin{itemize}
+    \item When working with dates within spreadsheets it is best to divide the three points of data into their own columns
+    \item Do not allow the software to store the information as dates but integers instead to ensure they can be translated correctly to other software
+    \item Excel will store dates as the current year unless specified otherwise
+\end{itemize}
+
+
+
+
+\end{subsection}
+\end{section}
 
 \end{document}
