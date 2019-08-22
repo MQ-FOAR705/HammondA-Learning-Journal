@@ -1,32 +1,38 @@
 \documentclass[12pt]{article}
  
+ %-Packages
 \usepackage[margin=1in]{geometry} 
-\usepackage{amsmath,amsthm,amssymb}
 \usepackage{titlesec}
- 
 
+%-Counters
+\newcounter{problem} \setcounter{problem}{1}
 
+%-Commands
+\newcommand{\actionlog}[1]{\paragraph{Action Log ID: \theproblem\ -}{#1} ~\\ \addtocounter{problem}{1}}
+
+\newcommand{\intention}[1]{\textbf{Intention:}{\textnormal\ #1} \newline}
+\newcommand{\action}[1]{\textbf{Action:}{\textnormal\ #1} \newline}
+\newcommand{\result}[1]{\textbf{Result:}{\textnormal\ #1} \newline}
+\newcommand{\solution}[1]{\textbf{Solution:}{\textnormal\ #1} \newline}
+\newcommand{\learning}[2]{\item \textit{#1} \textnormal{#2}}
+
+%---------------------------------------------------------------
 \begin{document}
- 
-% --------------------------------------------------------------
-%                         Start here
-% --------------------------------------------------------------
+%---------------------------------------------------------------
+
 \begin{titlepage}
 \title{Learning Journal}
 \author{Aaron Hammond\\
 FOAR705 - Digital Humanities}
 \maketitle
 \end{titlepage}
-\newcounter{problem}
-\addtocounter{problem}{1}
+
 
 
 \begin{section}{FOAR705 Week 2}
-
-\vspace{20}
 \subsection{Data Carpentry (Spreadsheets)}
 
-\underline{Formatting data tables in Spreadsheets}
+\subsubsection{Formatting data tables in Spreadsheets}
 \linebreak
 
 \textit{1.What are some common challenges with formatting data in spreadsheets and how can we avoid them?}\\
@@ -50,68 +56,58 @@ Exercises:\\
 \begin{enumerate}
     \item Who attended these interviews?
     \item What does the use of liv mean in the columns?
-    \item How often is frequently ?
+    \item How often is \textit{frequently ?}
     \item Does months\_lack\_food mean no meals or not a sufficient number of meals?
     \item instanceID is used in what type of software?
-\end{enumerate}\leavevmode\newline
-\vspace{5mm}
-\underline{Find examples of problem in data produced by your discipline}\\
-Within my discipline of Anthropology, locating problem data is very difficult. Typically ethnographies are written using field notes that are supported by academic literature. In saying this it is very difficult to locate problem sets of data as the public typically and privy to them.
+\end{enumerate}
 
-\vspace{10mm}
+\subsubsection{Find examples of problem in data produced by your discipline}
+Within my discipline of Anthropology, locating problem data is very difficult. Typically ethnographies are written using field notes that are supported by academic literature. In saying this it is very difficult to locate problem sets of data as the public typically and privy to them.
 
 \subsection{Learning Journal \date{15/08/2019}} 
 \vspace{5mm}
 
-Problem\_ID\theproblem
-\addtocounter{problem}{1}
+\actionlog{No Timestamp}
 \begin{itemize}
     \item Intention: Create a line break in LaTeX
     \item Action: Used the Rich Text tab and pressed enter
     \item Result: No line break
     \item Improvements or Solutions: Researched and found command "newline" to assist with formatting.
 \end{itemize}
-\vspace{10mm}
-Problem\_ID\theproblem
-\addtocounter{problem}{1}
+
+\actionlog{No Timestamp}
 \begin{itemize}
     \item Intention: Create a custom title for each page
     \item Action: Used the 'title' command and 'maketitle' in different combinations
     \item Result: No title added
     \item Improvements or Solutions: Instead use the title page function for the initial title and utilise 'sections' instead to group areas of my work.
 \end{itemize}
-\vspace{10mm}
-Problem\_ID\theproblem
-\addtocounter{problem}{1}
+
+\actionlog{No Timestamp}
 \begin{itemize}
     \item Intention: Create a numbered bullet list
     \item Action: Used 'itemize' command
     \item Result: Bulletted list without numbers
     \item Improvements or Solutions: Instead utilise the enumerate command for numbered lists
 \end{itemize}
-\vspace{10mm}
-Problem\_ID\theproblem
-\addtocounter{problem}{1}
+
+\actionlog{No Timestamp}
 \begin{itemize}
     \item Intention: Use the underscore in naming conventions
     \item Action: Quoted a filename which utilised the \_ character
     \item Result: Massive issues in formatting and text running off the page
     \item Improvements or Solutions: When using underscores the backslash command must be used before the \_ symbol to ensure formatting remains intact
 \end{itemize}
-\vspace{10mm}
 
-Problem\_ID\theproblem
-\addtocounter{problem}{1}
+\actionlog{No Timestamp}
 \begin{itemize}
     \item Intention: Create a counter so i don't have to manually count my problems
     \item Action: Created a counter and attempted to use stepcounter to print and increase it's value by 1 
     \item Result: Step counter did not print any characters
     \item Improvements or Solutions: Instead i used the counter command and referenced it using 'thecounter' and increased its value by 1 using 'addtocounter'afterwards
 \end{itemize}
-\vspace{10mm}
- 
- Problem\_ID\theproblem
- \addtocounter{problem}{1}
+
+\actionlog{No Timestamp}
 \begin{itemize}
     \item Intention: Fix the formatting issues caused by ending lists with vspace
     \item Action: Added vspace to the first Problem\_ID
@@ -124,22 +120,60 @@ Problem\_ID\theproblem
 
 \begin{section}{FOAR705 Week 3}
 
-\begin{subsection}{Data Carpentry (Spreadsheets)}
+\subsection{Data Carpentry (Spreadsheets)}
 \subsubsection{Date formats in spreadsheets}
 \paragraph{Question: What year is shown in the year column?} ~\\
 When adding data point '17/11' into the interview date column the Year column (formatted as =YEAR(A\$)) populates the field with '2019' (or the current year)
 \newline
-\paragraph{Key Points}
+\paragraph{Key Points to Remember}
 \begin{itemize}
     \item When working with dates within spreadsheets it is best to divide the three points of data into their own columns
     \item Do not allow the software to store the information as dates but integers instead to ensure they can be translated correctly to other software
     \item Excel will store dates as the current year unless specified otherwise
 \end{itemize}
 
+\subsubsection{Quality Assurance}
 
+\paragraph{Key Points to Remember}
+\begin{itemize}
+    \item Data Validation tools help to mitigate errors and provide restrictions on the type of data that can be placed into columns
+    \item Error messages can be customized as warnings or hard stops.
+    \item Drop-down lists can be created per each data validation rule or can be sourced from within the document
+    \item Overuse of these could cause issues if encountering unexpected  conditions or unique circumstances 
+\end{itemize}
 
+\subsubsection{Exporting Data}
+\paragraph{Key Points to Remember}
+\begin{itemize}
+    \item File formats such as .xls and .xlsx are proprietary format and risk not being supported by future technology
+    \item To ensure a document is more timeless and usable within a range of software, data should be saved as a .csv (comma seperated values) file type
+    \item Within csv files ensure that any commas used in data fields are written within double-quotation marks to ensure that data is not reformatted incorrectly on re-opening
+    \item Because it is formatted simply with commas and lines, .csv files can be edited in any text edit (such as notepad)
+\end{itemize}
 
-\end{subsection}
+\subsection{Learning Journal}
+
+\subsubsection{New Techniques and Commands Learned:}
+\begin{itemize}
+    \learning{subsubsection}{can be used to keep effective formatting within a subsection}
+    \learning{tilde+doublebackslash}{can be used to force a line break after the paragraph command}
+    \learning{verb}{can be used to ignore coding commands}
+    \learning{newcommand[]}{can be used to create macros and within brackets you specify how many arguements you would like to include, arguments are referenced with the 'pound sign + number' combination}
+    \learning{setcounter}{is used to set the value of a counter by specifying the counter name and the value within two separate curly bracket sets}
+    \learning{backslash+space}{can be used to force a space}
+    \learning{the+countername}{is the command to print the counter's value}
+\end{itemize}
+
+\subsubsection{Action Log}
+
+\actionlog{22/08/2019 15:21}
+\intention{Neatly format within a Subsection}
+\action{attempted to use paragraph command to a standardized formatting}
+\result{new line did not include referencing numbers for location}
+\solution{Use the subsubsection command instead}
+
+\actionlog{22/08/2019 15:36}
+
 \end{section}
 
 \end{document}
