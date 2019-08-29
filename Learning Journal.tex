@@ -4,6 +4,7 @@
 \usepackage[margin=1in]{geometry} 
 \usepackage{titlesec}
 \usepackage{hyperref}
+\usepackage{xcolor}
 
 %-Counters
 \newcounter{problem} \setcounter{problem}{1}
@@ -22,11 +23,13 @@
 \newcommand{\question}[1]{\paragraph{Question: {\textnormal{\textit{#1}}} ~\\}}
 
 %-Config
+
+\definecolor{hyperblue}{RGB}{112, 146, 190}
 \hypersetup{
     colorlinks,
     citecolor=black,
     filecolor=black,
-    linkcolor=navy,
+    linkcolor=hyperblue,
     urlcolor=black
 }
 
@@ -329,6 +332,7 @@ Text files can be edited by using the nano command or renamed using the \textit{
     \learning{empty}{Value can be used to empty a default field (e.g. contentsname}
     \learning{asteriks}{At the end of a command (such as section) can be used to prevent it from including a number}
     \learning{hypperref}{Package can be used to link the table of contents to its location within the document}
+    \learning{xcolor}{Package can be used to create custom colours for reference}
 \end{itemize}
 
 \subsubsection{Action Log}
@@ -337,7 +341,40 @@ Text files can be edited by using the nano command or renamed using the \textit{
 \intention{Place a border around the title page in elaboration I}
 \action{Attempted to use the \textit{frame} command around title page}
 \result{Everything was removed except the data within a small frame}
-\solution{Found }
+\solution{Found code that helped me format my title page correctly \hyperlink{https://tex.stackexchange.com/questions/407812/page-border-for-cover-page-in-latex?rq=1}{here}} 
 
-%Shell3
+\actionlog{29/08/2019 14:58}
+\intention{Remove the word contents from the Table of Contents command}
+\action{Tried toc and table commands in the hopes that would remove it}
+\result{Contents header was still printed}
+\solution{I found another person with a similar issue and their solution was to use the \textit{def} command to define the contentsname variable to empty. Code found \hyperlink{https://latex.org/forum/viewtopic.php?t=8151}{here}.}
+
+\actionlog{29/08/2019 18:04}
+\intention{To remove the number before each section}
+\action{Remove the begin section commands and replace them with just section* commands}
+\result{The numbers were removed from the headers but unfortunately from the table of contents too}
+\solution{Find a way to simply hide the numbers instead of removing them}
+
+\actionlog{29/08/2019 18:11}
+\intention{Hide the section numbers}
+\action{Replace the section* commands with just section and introduce variable setcounter secnumdepth to 0}
+\result{All numbers removed from all sections, not just Section}
+\solution{Renew the section command only to prevent subsequent changes}
+
+\actionlog{29/08/2019 18:30}
+\intention{Add hyper reference links to the table of contents}
+\action{Added the hyperref package and set the link colour to blue}
+\solution{Worked correctly but links were too blue}
+
+\actionlog{29/08/2019 23:30}
+\intention{Create a new colour for referencing}
+\action{Added package xcolor and used definecolor command using name,RGB,<R, G, B> then used newcolor name in hyperref parameters}
+\result{A duller blue hyperlink}
+
+\actionlog{29/08/2019 23:30}
+\intention{Create a hyperlink to a URL}
+\action{Used the \textit{hyperlink} command placing the label in the first argument and the link in the second}
+\result{The label was the link and the URL was simply "here"}
+\solution{Reverse the two arguments so clicking "here" takes you to the URL}
+
 \end{document}
