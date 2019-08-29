@@ -7,17 +7,19 @@
 
 %-Counters
 \newcounter{problem} \setcounter{problem}{1}
-\addtocounter{section}{1}
-\setcounter{secnumdepth}{0}
+%\addtocounter{section}{1}
+
 
 %-Commands
 \newcommand{\actionlog}[1]{\paragraph{Action Log ID: \theproblem\ -}{#1} ~\\ \addtocounter{problem}{1}}
-\newcommand{\newweek}[1]{\addtocounter{section}{1} \section{Assignments - Week \thesection}}
+\newcommand{\newweek}[1]{\addtocounter{section}{1} \underline{\section{Assignments - Week \thesection}}\\[5mm]}
 \newcommand{\intention}[1]{\textbf{Intention:}{\textnormal\ #1} \newline}
 \newcommand{\action}[1]{\textbf{Action:}{\textnormal\ #1} \newline}
 \newcommand{\result}[1]{\textbf{Result:}{\textnormal\ #1} \newline}
 \newcommand{\solution}[1]{\textbf{Solution:}{\textnormal\ #1} \newline}
 \newcommand{\learning}[2]{\item \textit{#1} \textnormal{#2}}
+\newcommand{\remember}{\paragraph{Key Points to Remember:}}
+\newcommand{\question}[1]{\paragraph{Question: {\textnormal{\textit{#1}}} ~\\}}
 
 %-Config
 \hypersetup{
@@ -39,6 +41,7 @@ FOAR705 - Digital Humanities}
 
 \begin{titlepage}
 \maketitle
+\def\contentsname{\empty}
 \tableofcontents
 \end{titlepage}
 
@@ -231,6 +234,110 @@ When adding data point '17/11' into the interview date column the Year column (f
 
 %---------------------------------------------------------Week4
 \newweek{}
+\subsection{Data Carpentry (Shell)}
+\subsubsection{Introducing the Shell}
+%Shell1
+\question{What is a command shell and why would I use one?}
+A shell is a text-based command line interface that responds explicitly to commands entered. This type of interface is useful when conducting highly-repetitive tasks and as a terminal to send commands to a remote machine.  
+\remember
+\begin{itemize}
+    \item Shell's main advantage is to increase the action-to-keystroke ratio by automating repetitive tasks
+    \item \textit{ls} command can be used to list files within the current directory
+    \item \textit{cd} command can be used to change directory
+\end{itemize}
+%Shell2
+\subsubsection{Navigating Files and Directories}
+
+\question{Starting from /Users/amanda/data, which of the following commands could Amanda use to navigate to her home directory, which is /Users/amanda?}
+Amanda would need to use the \textit{cd \~} command
+
+\question{Using the filesystem diagram below, if pwd displays /Users/thing, what will ls -F ../backup display?}
+4. original/ pnas\_final/ pnas\_sub/
+
+\question{Using the filesystem diagram below, if pwd displays /Users/backup, and -r tells ls to display things in reverse order, what command(s) will result in the following output}
 
 
+\question{How can I move around on my computer?}
+The command \textit{cd} is used to move around the computer.
+
+\question{Can I see what files and directories I have?}
+The command \textit{ls} will list the files and filders within a the specified folder. If no folder is specified the currently occupied folder items will be displayed.
+
+\question{How can I specify the location of a file or directory on my computer?}
+This can be achieved by using the -F option and dictating the folder location e.g. \textit{ls -f users/aaron/documents}
+
+\remember
+\begin{itemize}
+    \item \textit{pwd} command can be used to print the current working directory
+    \item \textit{ls --help} command will list all the options for the ls command
+    \item \textit{cd \~, .. or -} Tilde goes home, .. goes up and - goes back
+    
+\end{itemize}
+
+\subsubsection{Working With Files and Directories}
+
+\question{How can I create, copy, and delete files and directories?}
+Command \textit{mkdir} can be used to create a folder \\
+Command \textit{touch <filename>} can be used to create a blank file \\
+Command \textit{mv} will move desired file(s) to specified location
+Command \textit{cp} will copy desired files to specified location (if same location it will be copied and renamed)
+Command \textit{rm} will delete a file, use -r option to delete a directory and -i for a prompt
+
+\question{When might you want to create a file this way? (using touch command}
+The file size is 0kb and it could be used when running loop commands or to quickly store data in a file using a script.
+
+\question{Fill in the blanks to move these files to the current folder (i.e., the one she is currently in):}
+\$ mv ../analyzed/sucrose.dat ../analyzed/maltose.dat .
+
+\question{After creating and saving this file you realize you misspelled the filename! You want to correct the mistake, which of the following commands could you use to do so?}
+mv statstics.txt statistics.txt
+
+\question{What is the output of the closing ls command in the sequence shown below?}
+2.recombine
+
+\question{What happens when we execute rm -i thesis\_backup/quotations.txt? Why would we want this protection when using rm?}
+This will provide a prompt forcing you to enter another command to delete the file.
+
+\question{In the example below, what does cp do when given several filenames and a directory name?}
+This will copy the two files into the destination folder (backup)
+
+\question{In the example below, what does cp do when given three or more file names?}
+Command cannot be executed as the file is not a location.
+
+\question{When run in the molecules directory, which ls command(s) will produce this output?}
+ls *t??ne.pdb
+
+\question{The fructose.dat and sucrose.dat files contain output from her data analysis. What command(s) does she need to run so that the commands below will produce the output shown?}
+Question already states that fructose.dat and sucrose.dat are in the analyzed folder. But if you would like to move them elsewhere you would use mv *.dat followed by your location
+
+\question{Which of the following set of commands would achieve this objective? What would the other commands do?}
+$ mkdir 2016-05-20\\
+$ mkdir 2016-05-20/data\\
+$ mkdir 2016-05-20/data/processed\\
+$ mkdir 2016-05-20/data/raw\\
+\\
+Would create the desired folder structure.
+
+\question{How can I edit files?}
+Text files can be edited by using the nano command or renamed using the \textit{mv} command
+
+\subsection{Learning Journal}
+\subsubsection{New Techniques and Commands Learned:}
+\begin{itemize}
+    \learning{0mm}{Can be used to apply vspace without the command}
+    \learning{rule}{Command can be used to rule a line accross the page}
+    \learning{empty}{Value can be used to empty a default field (e.g. contentsname}
+    \learning{asteriks}{At the end of a command (such as section) can be used to prevent it from including a number}
+    \learning{hypperref}{Package can be used to link the table of contents to its location within the document}
+\end{itemize}
+
+\subsubsection{Action Log}
+
+\actionlog{29/08/2019 14:27}
+\intention{Place a border around the title page in elaboration I}
+\action{Attempted to use the \textit{frame} command around title page}
+\result{Everything was removed except the data within a small frame}
+\solution{Found }
+
+%Shell3
 \end{document}
