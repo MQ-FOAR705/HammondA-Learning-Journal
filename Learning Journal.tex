@@ -3,36 +3,51 @@
  %-Packages
 \usepackage[margin=1in]{geometry} 
 \usepackage{titlesec}
+\usepackage{hyperref}
 
 %-Counters
 \newcounter{problem} \setcounter{problem}{1}
+\addtocounter{section}{1}
+\setcounter{secnumdepth}{0}
 
 %-Commands
 \newcommand{\actionlog}[1]{\paragraph{Action Log ID: \theproblem\ -}{#1} ~\\ \addtocounter{problem}{1}}
-
+\newcommand{\newweek}[1]{\addtocounter{section}{1} \section{Assignments - Week \thesection}}
 \newcommand{\intention}[1]{\textbf{Intention:}{\textnormal\ #1} \newline}
 \newcommand{\action}[1]{\textbf{Action:}{\textnormal\ #1} \newline}
 \newcommand{\result}[1]{\textbf{Result:}{\textnormal\ #1} \newline}
 \newcommand{\solution}[1]{\textbf{Solution:}{\textnormal\ #1} \newline}
 \newcommand{\learning}[2]{\item \textit{#1} \textnormal{#2}}
 
+%-Config
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=navy,
+    urlcolor=black
+}
+
+\title{Learning Journal}
+\author{Aaron Hammond\\
+FOAR705 - Digital Humanities}
+\date{Semester 2, 2019}
+
 %---------------------------------------------------------------
 \begin{document}
 %---------------------------------------------------------------
 
 \begin{titlepage}
-\title{Learning Journal}
-\author{Aaron Hammond\\
-FOAR705 - Digital Humanities}
 \maketitle
+\tableofcontents
 \end{titlepage}
 
+%---------------------------------------------------------------Week 2
+
+\newweek{}
 
 
-\begin{section}{FOAR705 Week 2}
-\subsection{Data Carpentry (Spreadsheets)}
-
-\subsubsection{Formatting data tables in Spreadsheets}
+\subsection{Formatting data tables in Spreadsheets}
 \linebreak
 
 \textit{1.What are some common challenges with formatting data in spreadsheets and how can we avoid them?}\\
@@ -116,9 +131,10 @@ Within my discipline of Anthropology, locating problem data is very difficult. T
 \end{itemize}
 
 \clearpage
-\end{section}
 
-\begin{section}{FOAR705 Week 3}
+%------------------------------------------------------Week 3
+
+\newweek{}
 
 \subsection{Data Carpentry (Spreadsheets)}
 \subsubsection{Date formats in spreadsheets}
@@ -211,7 +227,10 @@ When adding data point '17/11' into the interview date column the Year column (f
 \action{I placed the text that i wanted printed within quotation marks and insert brackets}
 \result{It created bizzarre characters and was not at all what i wanted}
 \solution{I can use the \textit{verb} and utilize | marks to print without translating the commands}
+\newpage
 
-\end{section}
+%---------------------------------------------------------Week4
+\newweek{}
+
 
 \end{document}
