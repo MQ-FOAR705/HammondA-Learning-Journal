@@ -414,7 +414,50 @@ Yes just executing one command for A files and one for B
     rm *.txt
 \end{verbatim}
 
-\subsubsection{}
+\subsubsection{Loops}
+\question{Why do the commands have different outputs?}
+One command will print the same thing for each file that matches the criteria. The other uses a variable allows it to loop and print the variable value once each
+
+\question{What will be the output of the loop using c*?}
+This will run the loop only on files beginning with c - and therefore will only displace cubane.pdb
+\question{What is the effect of this loop? (Part 1)}
+This will print the name and the contents into a file named alkanes. The last file processed will be the contents of alkanes.pdb (pentane.pdb)
+\question{What is the output of this loop (Part 2)}
+All the text from the .pdb files will be stored sequentially in the all.pdb file
+\question{Dry Run Loop - do we want to run the command with weird quotation marks or not?}
+We want to run Version 1 - version 2 will print the same thing for each file.\\
+Edit: actually it appears the second version works - and will print the whole command within the command line
+\question{Nested Loops: What would the following code do?}
+The code will make 12 directories, each is named with two variables, the species and the temperature
+\subsubsection{Shell Scripts}
+\question{Write a script that takes any number of file names as command-line arguments}
+I wrote a script 
+\begin{verbatim}
+    cut -d , -f 2 "$1" | sort | uniq
+\end{verbatim}
+But this didn't achieve all the files, i looked at the solution and should have added the loop and \$@ to ensure that it would repeat for all the different files present in the folder
+
+\question{Why is history command listed in the history list?}
+Because it was the last command that was executed. It can't run the history command without running it and logging it to history.
+
+\question{Variable in Shell Scripts - What would i expect to see with a wildcard name and two arguments in a command}
+In this instance i would expect to see the first and last line of each pdb file in the directory (if not an error from the quotation marks?)
+\question{Write a script that takes the name of a directory and filename extension as its arguments}
+To achieve this the script must use the wc command alongside two arguments and sorting to produce the correct result. The last two of the file are taken (as the last line is Total) and then you choose the head of the two.
+
+\begin{verbatim}
+    wc -l \$1/*.\$2 | sort -n | tail -n 2 | head -n 1
+\end{verbatim}
+
+\question{What would each script do?}
+Script 1 - would print all the files in the current folder\\
+Script 2 - would display the contents of 3 specified files \\
+Script 3 - would print all pdb files that
+
+\question{Debugging - what is wrong with the script?}
+The variable is spelled incorrectly, should be \$datafile.
+
+
 \subsection{Learning Journal}
 
 \subsubsection{New Techniques and Commands Learned:}
