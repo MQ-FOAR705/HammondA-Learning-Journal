@@ -490,6 +490,71 @@ The script would need to match the files -type, modified within 1 day (mtime) an
 
 \subsubsection{New Techniques and Commands Learned:}
 
+\paragraph{Overleaf}
+\begin{itemize}
+\learning{justify}{environment can be used instead of center to format the text evenly between margins}
+\learning{href}{command should be used instead of \textit{hyperlink} to embody the link within text}
+\learning{lmodern}{package can be used so symbols appear correctly instead of upside down question marks}
+\end{itemize}
+\paragraph{Unix Shell}
+\begin{itemize}
+\learning{wc}{command is used to count words, lines or characters of a file}
+\learning{sort}{command can be used to order results}
+\learning{head tail}{commands can be used to display the first and last records of a file}
+\learning{cat}{used to display the contents of a file}
+\learning{|}{can be used to write new commands that utilise the results of the previous}
+\learning{variables}{in loops can be referenced with \$VAR}
+\learning{for}{is the beginning of a loop, and must finish with done command}
+\learning{quotation marks}{are used if values may have spaces in them}
+\learning{\$@}{is used in scripts to execute on all potential files}
+\learning{bash}{command is used to execute scripts}
+\learning{grep}{command is used to search for words within files}
+\learning{find}{command is used to find files}
+\end{itemize}
+
 \subsubsection{Action Log}
+\actionlog{05/09/2019 12:56}
+\intention{Used the hyperlink command in Overleaf to link text to a URL}
+\action{Clicked the link}
+\result{Took me to the table of contents}
+\solution{Use the HREF command instead of hyperlink}
+
+\actionlog{05/09/2019 13:47}
+\intention{Format text as justify}
+\action{Removed the center command and replaced it with justify}
+\result{No formatting change took place}
+\solution{Set the environment as justify instead of just a command, begin justify}
+
+\actionlog{05/09/2019 22:30}
+\intention{Write greater than symbols}
+\action{Used these symbols as text}
+\result{Displayed as upside down question marks}
+\solution{Need to use package lmodern for symbols to be displayed correctly}
+
+
+\actionlog{06/09/2019 00:20}
+\intention{Write a script in Unix Shell}
+\action{Wrote a loop script using the for command}
+\result{Received error 'unexpected end of file'}
+\solution{Edit the script again and add 'done' at the end}
+
+\actionlog{06/09/2019 01:19}
+\intention{Find a file in Unix Shell}
+\action{Used command find . '*.txt'}
+\result{Error: no such file or directory exists}
+\solution{I needed to specify i was searching for the name, find . -name}
+
+\actionlog{05/09/2019 23:53}
+\intention{Write loop script for word count}
+\action{Wrote script with looping and variable}
+\result{Execution would just hang}
+\solution{The variable was spelt incorrectly in the 3rd reference within the script}
+
+\actionlog{05/09/2019 14:22}
+\intention{Upload audio file for transcription}
+\action{Uploaded my AAC file}
+\result{oTranscriber says it's not supported by my browser}
+\solution{Converted the file to a .wav and tried again}
+
 
 \end{document}
