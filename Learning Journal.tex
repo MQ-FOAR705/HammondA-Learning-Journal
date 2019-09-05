@@ -5,15 +5,16 @@
 \usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage{xcolor}
+\usepackage{lmodern}
 
 %-Counters
 \newcounter{problem} \setcounter{problem}{1}
-%\addtocounter{section}{1}
+\addtocounter{section}{1}
 
 
 %-Commands
 \newcommand{\actionlog}[1]{\paragraph{Action Log ID: \theproblem\ -}{#1} ~\\ \addtocounter{problem}{1}}
-\newcommand{\newweek}[1]{\addtocounter{section}{1} \underline{\section{Assignments - Week \thesection}}\\[5mm]}
+\newcommand{\newweek}[1]{\underline{\section{Assignments - Week \thesection}}\\[5mm]}
 \newcommand{\intention}[1]{\textbf{Intention:}{\textnormal\ #1} \newline}
 \newcommand{\action}[1]{\textbf{Action:}{\textnormal\ #1} \newline}
 \newcommand{\result}[1]{\textbf{Result:}{\textnormal\ #1} \newline}
@@ -30,7 +31,8 @@
     citecolor=black,
     filecolor=black,
     linkcolor=hyperblue,
-    urlcolor=black
+    urlcolor=black,
+    linktoc=all
 }
 
 \title{Learning Journal}
@@ -376,5 +378,47 @@ Text files can be edited by using the nano command or renamed using the \textit{
 \action{Used the \textit{hyperlink} command placing the label in the first argument and the link in the second}
 \result{The label was the link and the URL was simply "here"}
 \solution{Reverse the two arguments so clicking "here" takes you to the URL}
+\newpage
+
+%----------------------------------------------------------------Week 5
+\newweek{}
+
+\subsection{Data Carpentry (Unix Shell)}
+\subsubsection{Pipes and Filters}
+\question{What does \textnormal{>>} mean?}
+The operator >> will print text as an addition to the files contents and not replace what is currently there.
+\question{After the commands that correspond to the file animals-subset.txt:}
+As the two commands use different operators the file will print the first three lines of animals.txt to the subset.txt - and then append it with the last two lines of animals.txt
+\question{In order to find the 3 files which have the least number of lines in our directory - what command(s) would we need to run?}
+wc -l * | sort-n | head -n 3
+\question{What passes through each of the popes and the final redirect in the pipeline below?}
+\begin{verbatim}
+    cat animals.txt | head -n 5 | tail -n 3 | sort -r > final.txt
+\end{verbatim}
+This command will display the contents of the file animals.txt, print the first 5 lines, the next pipe will then filter to only print the last 3 lines of the 5 printed. Then the command will sort them in reverse order and save the results to the final.txt file
+\question{Using uniq and another command, how can you list the animals without duplicating their names?}
+The following command would achieve this
+\begin{verbatim}
+    cut -d , -f 2 animals.txt | sort | uniq
+\end{verbatim}
+
+\question{What command to produce a table that shows the total count of each type of animal in the file}
+\begin{verbatim}
+    cut -d , -f 2 animals.txt | sort | uniq -c
+\end{verbatim}
+
+\question{Can you match the same set of files with basic wildcard expressions?}
+Yes just executing one command for A files and one for B
+\question{Which of the following would remove only all the processed data files?}
+\begin{verbatim}
+    rm *.txt
+\end{verbatim}
+
+\subsubsection{}
+\subsection{Learning Journal}
+
+\subsubsection{New Techniques and Commands Learned:}
+
+\subsubsection{Action Log}
 
 \end{document}
