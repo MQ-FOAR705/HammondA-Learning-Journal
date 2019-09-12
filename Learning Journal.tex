@@ -6,6 +6,9 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{lmodern}
+\usepackage[pagestyles]{titlesec}
+\usepackage{tocloft}
+
 
 %-Counters
 \newcounter{problem} \setcounter{problem}{1}
@@ -34,6 +37,8 @@
     urlcolor=black,
     linktoc=all
 }
+\titleformat{\section}{\normalfont\Large\bfseries}{}{0em}{}
+\renewcommand\numberline[1]{}
 
 \title{Learning Journal}
 \author{Aaron Hammond\\
@@ -45,8 +50,9 @@ FOAR705 - Digital Humanities}
 %---------------------------------------------------------------
 
 \begin{titlepage}
+
 \maketitle
-\vspace{-2.5cm}
+\vspace{-1.5cm}
 \def\contentsname{\empty}
 \tableofcontents
 \end{titlepage}
@@ -556,6 +562,60 @@ The script would need to match the files -type, modified within 1 day (mtime) an
 \action{Uploaded my AAC file}
 \result{oTranscriber says it's not supported by my browser}
 \solution{Converted the file to a .wav and tried again}
+\newpage
+%------------------------------------------------------------------
+\newweek{}
+\subsection{Data Carpentry (OpenRefine)}
+\subsubsection{Introduction}
+\begin{itemize}
+    \item OpenRefine provides a set of tools allowing the identification and amending of data
+    \item All actions are easily reversed in OpenRefine
+    \item Saving your work will be in a new file to allow for version history
+    \item OpenRefine logs all the steps taken and allows them to be applied to other datasets (but does not modify the original dataset)
+\end{itemize}
+
+\subsubsection{Working with OpenRefine}
+\question{Try sorting this facet by name and by count. Do you notice any problems with the data? What are they?}
+The facet presents information regarding all the fields of that volumn (Village column). It has a record for each of the different values within the column. The values can be sorted alphabetically or by the number of times they appear in the list (their count)
+\newline
+Some errors appear to be:
+\begin{itemize}
+    \item ruca is likely a mispelling
+    \item chirdozo is likely a mispelling
+    \item 49 appears to be a placeholder of some sort
+    \item 'Ruaca - Nhamuenda1' is incorrectly formatted with spaces instead
+\end{itemize}
+\question{Using faceting, find out how many different interview_date values there are in the survey results}
+There is a total of 19 different interview dates
+\question{Is the column formatted as Text or Date?}
+The column is formatted as text and not with numeric or date values
+\question{Use faceting to produce a timeline display for interview_date. You will need to use Edit cells > Common transforms > To date to convert this column to dates.}
+Done.
+\question{During what period were most of the interviews collected?}
+From 16/11/2016 to 04/12/2016 had the highest volume of interviews. More accurately though is the month of November 16' had the largest amount.
+\question{What command would you use to remove the right bracket and apostrophes from the column of data?}
+\begin{verbatim}
+    value.replace(" ", "")
+    value.replace("'", "")
+    value.replace("]", "")
+\end{verbatim}
+\question{Which two items are the most commonly owned? Which are the two least commonly owned?}
+The most common items owned are mobile phones and radios; the fewest owned items are cars and computers
+\question{Which month(s) were farmers more likely to lack food?}
+The months of October and November.
+\question{Which were the common months without water?}
+September and October
+\question{What was the most common livestock owned?}
+Oxen and Cows
+\question{}
+
+
+
+\subsubsection{Filtering and Sorting with OpenRefine}
+\subsection{Learning Journal}
+\subsubsection{New Techniques and Commands Learned:}
+\paragraph{OpenRefine}
+\paragraph{Overleaf}
 
 
 \end{document}
