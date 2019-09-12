@@ -607,15 +607,40 @@ The months of October and November.
 September and October
 \question{What was the most common livestock owned?}
 Oxen and Cows
-\question{}
-
-
-
+\question{Most common responses for strategies for food mitigation}
+Was lab\_ex\_food and na
+\question{Most common responses for resolution change?}
+Were nothing (null) or less work
 \subsubsection{Filtering and Sorting with OpenRefine}
+\question{What roof types are selected by this procedure?}
+This feature will on show the rows that contain a value in the 'roof\_type' column that corresponds to what is entered into the filter/facet box
+\question{How would you restrict this to only one of the roof types?}
+By typing out the remaining feature of the roof you're after so the results are further refined. e.g. mabatisloping
+\question{Use include / exclude to select only entries from one of these two roof types}
+By mousing over the facet options on the left side you can elect to include or exclude rows that contain the desired/ undesired value.
+\question{Sort the data by gps\_Altitude. Do you think the first few entries may have incorrect altitudes?}
+Yes, as all the other values are above 600 I would assume that these 4 entries with a value of 0 are errors or mistakes.
+\question{Can you tell from it’s GPS coordinates which village it belong to?}
+It is most likely Chirodzo as the longitude values are very similar and have identical altitude values. 
+\question{Is it the same village as when comparing GPS coordinates?}
+Yes, now we can confidently say that because of all the matching criteria, village 49 is Chirodzo
 \subsection{Learning Journal}
 \subsubsection{New Techniques and Commands Learned:}
-\paragraph{OpenRefine}
 \paragraph{Overleaf}
+\begin{itemize}
+    \learning{vspace*}{can be used to force vspace after a new page command}
+    \learning{titlesec}{package can be used to simply hide the numbering of sections but still retain its functionality}
+\end{itemize}
+\paragraph{OpenRefine}
+\begin{itemize}
+    \learning{facets}{help give an overview of the data}
+    \learning{transform}{features can be used to format columns into specific types of values e.g. from text to dates}
+    \learning{clustering}{can be used to clean up errors in data entry instantly}
+    \learning{value.replace}{as an expression can be used to find and replace values within the column}
+    \learning{value.split}{can be used to explicitly state which symbol is used within the column to separate data values}
+    \learning{A}{good distinction is that faceting gives you an overview description of all of the data that is currently selected, while filtering allows you to select a subset of your data for analysis}
+\end{itemize}
+\subsubsection{Action Log}
 
 
 \end{document}
