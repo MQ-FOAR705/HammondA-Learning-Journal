@@ -6,8 +6,9 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{lmodern}
-\usepackage[pagestyles]{titlesec}
+\usepackage[pagestyle]{titlesec}
 \usepackage{tocloft}
+
 
 
 %-Counters
@@ -50,7 +51,6 @@ FOAR705 - Digital Humanities}
 %---------------------------------------------------------------
 
 \begin{titlepage}
-
 \maketitle
 \vspace{-1.5cm}
 \def\contentsname{\empty}
@@ -59,7 +59,7 @@ FOAR705 - Digital Humanities}
 
 %---------------------------------------------------------------Week 2
 
-\newweek{}
+\newweek
 
 
 \subsection{Formatting data tables in Spreadsheets}
@@ -630,6 +630,7 @@ Yes, now we can confidently say that because of all the matching criteria, villa
 \begin{itemize}
     \learning{vspace*}{can be used to force vspace after a new page command}
     \learning{titlesec}{package can be used to simply hide the numbering of sections but still retain its functionality}
+    \learning{titleformat}{command can be used to alter the default formatting of certain types of text e.g. sections}
 \end{itemize}
 \paragraph{OpenRefine}
 \begin{itemize}
@@ -641,6 +642,24 @@ Yes, now we can confidently say that because of all the matching criteria, villa
     \learning{A}{good distinction is that faceting gives you an overview description of all of the data that is currently selected, while filtering allows you to select a subset of your data for analysis}
 \end{itemize}
 \subsubsection{Action Log}
+
+\actionlog{12/09/2019 14:04}
+\intention{Remove section numbers from heading and table of contents}
+\action{Added the titlesec package and defined sections using the titleformat command}
+\result{Section numbering was removed successfully from headings and table of contents}
+\solution{Using the code found \href{https://tex.stackexchange.com/questions/220566/sections-suppress-numbers-but-retain-title-in-header}{here} i could make the desired formatting changes}
+
+\actionlog{12/09/2019 14:20}
+\intention{Move the title up on the page to reduce the blank space above}
+\action{Attempted to use the titling package with the setlength and droptitle commands}
+\result{"Error: Option clash for package titlesec."}
+\solution{Rather than use two conflicting packages vspace* could be used instead}
+
+\action{12/09/2019 21:49}
+\intention{OpenRefine: run multiple replace expressions together}
+\action{Grouped the expressions all together as one replace action}
+\result{Only the top expression functioned correctly}
+solution{Need to use more sophisticated coding language for instance, group the commands together with additional .replace commands}
 
 
 \end{document}
