@@ -718,4 +718,30 @@ There is a history folder that holds the information regarding the changes made 
 \solution{Research how to ensure that the exe runs on the files themselves without being specifically typed in the script\\
 Alternatively, a simpler but manual process is to highlight the file and drag and drop on the exe, does everything but move the files}
 
+\actionlog{04/10/2019 00:33}
+\intention{Paste text into Cygwin64 Terminal}
+\action{Selected and Ctrl+C to copy the text, and in the window attempted Ctrl+V}
+\result{Nothing was pasted, just V}
+\solution{In this program I needed to use shift and insert to paste in text}
+
+\actionlog{04/10/2019 00:33}
+\intention{Install Mozilla Deepspeech with Cygwin64 Terminal}
+\action{Pasted text pip3 install deepspeech and executed}
+\result{-bash: pip3: command not found}
+\solution{What i needed to type was:}
+\begin{verbatim}
+    sudo apt install python3-pip
+\end{verbatim}
+Before i can install deepspeech.
+
+\actionlog{04/10/2019 00:46}
+\intention{Use Alveo to test speech to text}
+\action{Attempst to navigate the website and use the tool showcased that you can't simply transcribe your own files}
+
+\actionlog{04/10/2019 02:00}
+\intention{Use deepspeech to transcribe an audio file}
+\action{Installed deepspeech and ran the documented commands}
+\result{deepspeech command not found}
+\solution{After some research it appears that deepspeech doesn't support the windows ubuntu terminal}
+
 \end{document}
