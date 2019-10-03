@@ -585,11 +585,12 @@ Some errors appear to be:
     \item 49 appears to be a placeholder of some sort
     \item 'Ruaca - Nhamuenda1' is incorrectly formatted with spaces instead
 \end{itemize}
-\question{Using faceting, find out how many different interview_date values there are in the survey results}
+
+\question{Using faceting, find out how many different interview\_date values there are in the survey results}
 There is a total of 19 different interview dates
 \question{Is the column formatted as Text or Date?}
 The column is formatted as text and not with numeric or date values
-\question{Use faceting to produce a timeline display for interview_date. You will need to use Edit cells > Common transforms > To date to convert this column to dates.}
+\question{Use faceting to produce a timeline display for interview\_date. You will need to use Edit cells, Common transforms, To date, in to convert this column to dates.}
 Done.
 \question{During what period were most of the interviews collected?}
 From 16/11/2016 to 04/12/2016 had the highest volume of interviews. More accurately though is the month of November 16' had the largest amount.
@@ -661,37 +662,60 @@ Yes, now we can confidently say that because of all the matching criteria, villa
 \result{Only the top expression functioned correctly}
 solution{Need to use more sophisticated coding language for instance, group the commands together with additional .replace commands}
 \newpage
+%---------------------------------------------------------------------------------------
+
 \newweek
 
 \subsection{Data Carpentry (Open Refine)}
 \subsubsection{Examining Numbers in OpenRefine}
-\question{Transform three more columns, no_members, yrs_liv, and buildings_in_compound, from text to numbers. Can all columns be transformed to numbers? - Try it with village for example.}
-Not possible to change Village into number values, only one was changed which was likely the mistake of village '49'
+\question{Transform three more columns, no\_members, yrs\_liv, and buildings\_in\_compound, from text to numbers. Can all columns be transformed to numbers?}
+It's not possible to change Village into number values, only one was changed which was likely the mistake of village '49'
 \begin{itemize}
     \item OpenRefine can be useful for maintaining numbered datasets
     \item All columns and data that is opened in OpenRefine is treated as text unless specified as otherwise
 \end{itemize}
 \subsubsection{Using scripts}
 \begin{itemize}
-    \item All the changes made in OpenRefine are logged and stored 
+    \item All the changes made in OpenRefine are logged and stored in JSON (Java Script Object Notation) format
+    \item These scripts can be exported and pasted into other data sets as a means of replicating the same changes to a different data set
 \end{itemize}
 \subsubsection{Exporting and Saving Data from OpenRefine}
+\question{After you have expanded the file look at the files that appear in this folder. What files are here? What information do you think these files contain?}
+There is a history folder that holds the information regarding the changes made in open refine (probably the JSOR scripts). A data.zip file that contains the values for the data set and two JSON files that contain the pre and post metadata values.
+\begin{itemize}
+    \item Alternatively the cleaned data and transformed values can be exported as .csv files
+    \item Exporting projects allows for them to be easily shared with others using OpenRefine, where they can see the raw data values and the changes you have made
+\end{itemize}
 \subsubsection{Other Resources in OpenRefine}
+\begin{itemize}
+    \item OpenRefine can also be used to fetch datasets from webservices such as geocoding grographic coordinates
+    \item Also can be used to parse data from web sites by using a URL fetch feature
+\end{itemize}
 
 \subsection{Learning Journal}
-\subsubsection{New Techniques and Commands Learned:}
-\paragraph{Overleaf}
-\begin{itemize}
-    \item 
-\end{itemize}
-\paragraph{OpenRefine}
-\begin{itemize}
-    \item 
-\end{itemize}
+
 \subsubsection{Action Log}
-\actionlog{1234567}
-\intention{}
-\action{}
-\result{}
-\solution{}
+\actionlog{03/10/2019 14:12}
+\intention{Convert PDF to text using texttopdf.exe}
+\action{Double-clicked the exe}
+\result{Blink of a command line then nothing}
+
+\actionlog{03/10/2019 14:14}
+\intention{Convert PDF to text using texttopdf.exe}
+\action{Shift and Right clicked the explorer to open a powershell at the correct directory and executed}
+\begin{verbatim}
+    pdftotext.exe test1.pdf
+\end{verbatim}
+\result{Error: The term 'pdftotext.exe' is not recognized as the name of a cmdlet, function, script file, or operable program. Instead, i needed to try}
+\begin{verbatim}
+    .\pdftotext.exe test1.pdf
+\end{verbatim}
+
+\actionlog{03/10/2019 23:45}
+\intention{Convert multiple PDF to text files using Powershell}
+\action{Attempted to use the 'Get-childitem' -path -filter \*.pdf | foreach-object pdftotext}
+\result{Multiple instances of the pdftotext command options. My command was missing the syntax and couldn't correctly execute the exe on the files, it just ran the exe without a target specified}
+\solution{Research how to ensure that the exe runs on the files themselves without being specifically typed in the script\\
+Alternatively, a simpler but manual process is to highlight the file and drag and drop on the exe, does everything but move the files}
+
 \end{document}
