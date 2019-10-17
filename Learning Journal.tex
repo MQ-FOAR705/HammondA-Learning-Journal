@@ -745,11 +745,90 @@ Before i can install deepspeech.
 \solution{After some research it appears that deepspeech doesn't support the windows ubuntu terminal}
 
 \newpage
-
+%-------------------------------------------
 \newweek
 
 \subsection{Data Carpentry (R)}
 \subsubsection{Before we Start}
+\question{Use the install option from the packages tab to install the tidyverse package}
+Click the install button - search for the package tidyverse and click OK
+use the install.package("packagename")
+
+\paragraph{Top Left: Source, of scripts and documents}
+\paragraph{Bottom Left: Console, what R would look like and be like without RStudio}
+\paragraph{Top Right: Environment/History, look at what changes you have made}
+\paragraph{Bottom Right: Files, file browser to see the individual files within your project}
+
+
+\subsubsection{Introduction to R}
+\question{What do you think is the current content of the object area_acres? 123.5 or 6.175?}
+The environment lists the value of area\_acres as 6.175 as the value was stored before the dependant variable was changed. Correct! So i would need to re-run the assign value command for it to be updated
+
+\question{Show that changing the values of either length and width does not affect the value of area}
+\begin{verbatim}
+length <- 5, width <- 5, area <- length * width
+length <- 2
+area [1] 25
+\end{verbatim}
+\begin{verbatim}
+    round(2.492321345, 2)
+\end{verbatim}
+
+\question{What other functions exist that are similar to round? How do you use the digits parameter in the round function?}
+functions Signif, floor and trunc are all additional functions\\
+You add another argument and divide them by a comma e.g.
+
+\question{We’ve seen that atomic vectors can be of type character, numeric (or double), integer, and logical. But what happens if we try to mix these types in a single vector?}
+I imagine that R will produce an error in response, or assigns all values to the characteristics of the first data type
+
+\question{What will happen in each of these examples? (hint: use class() to check the data type of your objects):}
+Classes would be, character, numeric, numeric and character
+
+\question{How many values in combined_logical are "TRUE" (as a character) in the following example:}
+num\_logical has 1\\
+char\_logical has 1\\
+combined)\_logical has 1 (the true in num\_logical gets converted into a 1 before it gets converted into "1" in combined\_logical
+
+\question{Using this vector of rooms, create a new vector with the NAs removed}
+\begin{verbatim}
+    rooms <- c(1, 2, 1, 1, NA, 3, 1, 3, 2, 1, 1, 8, 3, 1, NA, 1)
+    roomswona <- na.omit(rooms)
+\end{verbatim}
+\question{Use the function median() to calculate the median of the rooms vector.}
+\begin{verbatim}
+    median(roomswona) - median is 1
+\end{verbatim}
+\question{Use R to figure out how many households in the set use more than 2 rooms for sleeping}
+\begin{verbatim}
+    length(roomswona[roomswona > 2]) - answer is 4
+\end{verbatim}
+
+\subsection{Learning Journal}
+
+
+\subsubsection{New Techniques and Commands Learned:}
+
+\paragraph{R}
+\learning{dir.create}{command to script the creation of directories}
+\learning{download.file}{command can be used to retreive files from a URL}
+\learning{install.package}{command can be used to install packages from the command line instead of the GUI}
+\learning{alt + -}{will automatically format the assign value symbol}
+\learning{\#}{is used to write comments for whatever follows it}
+\learning{na.omit(vector}{can be used to create a new vector using the same data set but omitting the missing values}
+
+\subsubsection{Action Log}
+
+\actionlog{123456}
+\intention{}
+\action{}
+\result{}
+\solution{}
+%--------------------------------------
+\newpage
+
+\newweek
+
+\subsection{Data Carpentry (R)}
 
 \subsubsection{Introduction to R}
 
@@ -769,6 +848,4 @@ Before i can install deepspeech.
 \action{}
 \result{}
 \solution{}
-
-
 \end{document}
