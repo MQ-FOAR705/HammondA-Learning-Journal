@@ -818,11 +818,38 @@ combined)\_logical has 1 (the true in num\_logical gets converted into a 1 befor
 
 \subsubsection{Action Log}
 
-\actionlog{123456}
-\intention{}
-\action{}
-\result{}
-\solution{}
+\actionlog{10/10/2019 23:11}
+\intention{Script output from deepspeech into a text file}
+\action{Added <variable > file.txt}
+\result{No text file created}
+\solution{Add the > command to the end of the original command to run deepspeech}
+
+\actionlog{10/10/2019 23:18}
+\intention{Create a file with the contents of the output - but use the original file name with a prefix}
+\action{Using a for script in the unix shell i tried to simply add the prefix to the variable}
+\result{
+  interview\_/mnt/c/FOAr705/project/interviews/testwav11.wav.txt: No such file or directory}
+\solution{create the file and run another command to rename it}
+
+\actionlog{11/10/2019 00:43}
+\intention{Move folder to a directory}
+\action{typed mv mnt/c/foar}
+\result{-bash: cd\\ mnt/dinosaur/village: No such file or directory}
+\solution{I forgot the initial /}
+
+\actionlog{11/10/2019 01:00}
+\intention{Run a bash script within a bash script}
+\action{After running the initial script i wanted to trigger another script to rename and move the files}
+\result{mv: cannot stat '*.txt': No such file or directory
+mv: cannot stat '*.txt': No such file or directory}
+\solution{The directory must be set for where the new script will run, after adding a cd command the script found the necessary files}
+
+\actionlog{17/10/2019 16:23}
+\intention{Print the values of a vector that meet a criteria}
+\action{Ran the command [roomswona>2]}
+\result{Error unexpected [ in [}
+\solution{i needed to establish the vector before trying to print it. the following worked instead\\
+roomswona[roomswona>2]}
 %--------------------------------------
 \newpage
 
