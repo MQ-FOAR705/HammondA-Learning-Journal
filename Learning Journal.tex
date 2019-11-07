@@ -8,6 +8,8 @@
 \usepackage{lmodern}
 \usepackage[pagestyle]{titlesec}
 \usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{lscape}
 
 
 
@@ -857,22 +859,386 @@ roomswona[roomswona>2]}
 
 \subsection{Data Carpentry (R)}
 
-\subsubsection{Introduction to R}
+\subsubsection{Starting with Data}
+\question{Create a data frame (interviews\_100) containing only the data in row 100 of the interviews dataset.}
+I run the command, interviews\_100 <- interview(100,) which will place the value of row 100 to the interviews\_100 vector
+
+\question{Create a new data frame (interviews_last) from that last row}
+interviews\_last <- interviews[131,]
+
+\question{Use nrow() to extract the row that is in the middle of the data frame. Store the content of this row in an object named interviews_middle.}
+\begin{verbatim}
+    norow <- nrow(interviews)
+    interviews_middle <- interviews[(norow / 2), ]
+\end{verbatim}
+\question{Combine nrow() with the - notation above to reproduce the behavior of head(interviews), keeping just the first through 6th rows of the interviews dataset}
+interviews\_head <- interviews[-(7:norow), ]
+interviews\_middle <- interviews[(]
+132), 1
+
+\question{Rename the levels of the factor to have the first letter in uppercase: No,Undetermined, and Yes.}
+\begin{verbatim}
+    levels(memb_assoc) <- c("No","Undetermined","Yes")
+\end{verbatim}
+\question{Now that we have renamed the factor level to ]Undetermined, can you recreate the barplot such that Undetermined is last (after Yes)?}
+\begin{verbatim}
+    memb_assoc <- factor(memb_assoc,levels = c("No","Yes","Undetermined"))
+plot(memb_assoc)
+\end{verbatim}
 
 \subsection{Learning Journal}
-
 
 \subsubsection{New Techniques and Commands Learned:}
 
 \paragraph{R}
 
-\paragraph{Overleaf}
+\learning{factors}{can be used to place your data into categories}
+\learning{:}{can be used to select only a particular range of the dataset}
+\learning{nrow}{will provide a set number of rows}
 
 \subsubsection{Action Log}
 
-\actionlog{123456}
-\intention{}
-\action{}
-\result{}
-\solution{}
+\actionlog{24/10/2019 16:27}
+\intention{I tried to create a new data vector of top 100 rows using command}
+\action{I ran the command interviews\_100 <- interviews[-c(1:100), ]}
+\result{Returned the wrong information}
+\solution{What i needed to use was interviews\_100 <- interviews[100, ]}
+
+\actionlog{24/10/2019 16:48}
+\intention{Read a csv file in R}
+\action{ran command read(SAFI_clean.csv}
+\result{Error: unexpected symbol in "read SAFI_clean.csv"}
+\solution{Instead i needed to run the command}
+\begin{verbatim}
+    > read_csv("data/SAFI_clean.csv")
+\end{verbatim}
+
+
+\actionlog{24/10/2019 17:10}
+\intention{Set a default directory for voyant server to automatically collect as a corpus}
+\action{Edited the server-settings file and set the corpus as follows}
+\begin{verbatim}
+    uri_path = /?input=/localhost/file:///C:/foar705/project/ready/gat.txt
+\end{verbatim}
+\result{Voyant server just ran the analysis on the words in the file path}
+
+\actionlog{24/10/2019 17:02}
+\intention{Set a default directory for voyant server to automatically collect as a corpus}
+\action{Edited the server-settings file and set the corpus as follows}
+\begin{verbatim}
+    uri_path = /?corpus=333.333 (to indicate a local corpus)
+\end{verbatim}
+\result{A corpus was specified but does not exist, could not be migrated and could not be recreated 333.333\\
+java.lang.IllegalArgumentException: A corpus was specified but does not exist, could not be migrated and could not be recreated: 333.333}
+%--------------------------------
+
+\newpage
+\newweek{}
+\subsection{Data Carpentry (R)}
+\subsubsection{Introducing dplyr and tidyr}
+\question{Create a new data frame from the interviews data that meets the following criteria. Contains only the village column and a new column called total\_meals containing a value that is equal to the total number of meals served in the household per day on average. Only the rows where total\_meals is greater than 20 should be shown in the final data frame.}
+\begin{verbatim}
+    > newviews <- interviews %>% 
++     + mutate(totalmeals = no_membrs * no_meals) %>% 
++     + select(village, totalmeals) %>% 
++     + filter(total_meals>20)
+\end{verbatim}
+
+\question{How many households in the survey have an average of two meals per day? Three meals per day? Are there any other numbers of meals represented?}
+\begin{verbatim}
+> interviews %>% 
++     count(no_meals)
+# A tibble: 2 x 2
+  no_meals     n
+     <dbl> <int>
+1        2    52
+2        3    79
+\end{verbatim}
+No, only 2 and 3 records.
+
+\question{Use group\_by and summarize to find the mean, min, and max number of household members for each village. Also add the number of observations}
+\begin{verbatim}
+    > interviews %>% 
++     group_by(village) %>% 
++     summarize(
++         mean_no_membrs=mean(no_membrs),
++         min_no_membrs=min(no_membrs),
++         max_no_membrs=max(no_membrs),
++         n=n())
+\end{verbatim}
+\question{What was the largest household interviewed in each month?}
+\begin{verbatim}
+    > interviews %>% 
++     mutate(month=month(interview_date),
++            year=year(interview_date)) %>% 
++     group_by(year,month) %>% 
++     summarize(max_no_membrs=max(no_membrs))
+# A tibble: 5 x 3
+# Groups:   year [2]
+   year month max_no_membrs
+  <dbl> <dbl>         <dbl>
+1  2016    11            19
+2  2016    12            12
+3  2017     4            17
+4  2017     5            15
+5  2017     6            15
+\end{verbatim}
+
+\question{Create a new data frame that has one column for each month and records TRUE or FALSE for whether each interview respondent was lacking food in that month.}
+\begin{verbatim}
+    interviews_months_lack_food <- interviews %>%
+  separate_rows(months_lack_food, sep=",") %>%
+  mutate(months_lack_food_logical  = TRUE) %>%
+  spread(key = months_lack_food, value = months_lack_food_logical, fill = FALSE)
+\end{verbatim}
+
+\question{How many months (on average) were respondents without food if they did belong to an irrigation association? What about if they didn’t?}
+\begin{verbatim}
+    > interviews_months_lack_food %>%
++     mutate(number_months = rowSums(select(., Apr:Sept))) %>%
++     group_by(memb_assoc) %>%
++     summarize(mean_months = mean(number_months))
+# A tibble: 3 x 2
+  memb_assoc mean_months
+  <chr>            <dbl>
+1 no                2.31
+2 yes               2.64
+3 NA                2.95
+\end{verbatim}
+\newpage
+\subsection{Learning Journal}
+
+\subsubsection{New Techniques and Commands Learned:}
+
+\paragraph{R}
+
+\learning{select}{command to select what information to print or work with}
+\learning{filter}{command to filter rows by a certain column value}
+\learning{pipes}{can be used to run a set of commands (works very similar to unix)}
+\begin{verbatim}
+    Pipes can be used by %>% - shortcut is ctrl+shift+m
+\end{verbatim}
+\learning{!}{symbol can be used to indicate 'not equal to'}
+\learning{read\_csv}{command can be used to open a csv file}
+\learning{write\_csv}{can write new objects or data sets to a csv}
+\learning{group\_by}{command can be used to group the results of rows together to understand some data more easily}
+\learning{summarize}{can be used in conjunction with group\_by to focus on certain aspects of data}
+\learning{mutate}{can be used to create new columns, which can refer to other columns data}
+
+\subsubsection{Action Log}
+
+\actionlog{31/10/2019 13:12}
+\intention{Use a group and summarize command then add a filter}
+\action{Ran the command}
+\begin{verbatim}
+    > interviews %>% filter(memb_assoc) %>% select(affect_conflicts,liv_count,no_meals) 
+\end{verbatim}
+\result{Error: Argument 2 filter condition does not evaluate to a logical vector}
+\solution{filter command needed to ask for a criteria (memb\_assoc=YES)}
+
+\actionlog{31/10/2019 13:17}
+\intention{Create a new column based on an equation between other columns}
+\action{Ran the following command}
+\begin{verbatim}
+    > interviews %>% 
++ mutate(people_per_room = no_members/rooms)
+Error: object ' no_members' not found
+> mutate(people_per_room = no_membrs/rooms)
+Error in mutate(people_per_room = no_membrs/rooms) :
+\end{verbatim}
+\result{object no\_membrs not found}
+\solution{Needed to set interviews as the dataset to work with}
+
+\action{31/10/2019 13:25}
+\intention{create a new column that multiplies one columns values with another}
+\action{Ran the following command}
+\begin{verbatim}
+    > newviews <- interviews %>% 
++ mutate(totalmeals = no_membrs * no_meals) %>% 
++ select(village, total_meals) %>% 
++ filter(total_meals>20)
+\end{verbatim}
+\result{Result was the error}
+\begin{verbatim}
+    Error in .f(.x[[i]], ...) : object total_meals not found
+\end{verbatim}
+\solution{Use the correct object name, totalmeals}
+
+\actionlog{31/10/2019 13:54}
+\intention{Find min, max and mean of households grouped by village}
+\action{Ran the following command}
+\begin{verbatim}
+    > interviews %>% 
++     group_by(village) %>% 
++     summarize(no_membrs,min(no_membrs),max(no_membrs))
+\end{verbatim}
+\result{Error: Column no\_membrs must be length 1 (a summary value), not 39}
+\solution{Needed to change the syntax to}
+\begin{verbatim}
+      summarize(
+      mean_no_membrs = mean(no_membrs),
+      min_no_membrs = min(no_membrs),
+      max_no_membrs = max(no_membrs)
+\end{verbatim}
+
+%---------------------------------
+
+\newpage
+\newweek{}
+\subsection{Data Carpentry (R)}
+\subsubsection{Data Visualisation with ggplot2}
+\question{Use what you just learned to create a scatter plot of rooms by village with the respondent\_wall\_type showing in different colors. Is this a good way to show this type of data?}
+\begin{verbatim}
+    > ggplot(data = interviews_plotting, 
+    aes(x = village, y = rooms)) +
++   geom_point(aes(color = respondent_wall_type))
+\end{verbatim}
+Not particularly, because so many of the plots want to occupy the exact same position it's hard to really gain much from the plot. Adding jitter would be more appropriate. However, even with jitter it is easy to confuse what plots are from what village.
+\question{Replace the box plot with a violin plot}
+\begin{verbatim}
+    ggplot(data = interviews_plotting, 
+    aes(x = respondent_wall_type, y = rooms)) +
+    geom_violin(alpha = 0) +
+    geom_jitter(alpha = 0.5, color = "tomato")
+\end{verbatim}
+\question{Create a boxplot for liv\_count for each wall type. Overlay the boxplot layer on a jitter layer to show actual measurements}
+\begin{verbatim}
+    ggplot(data = interviews_plotting, 
+    aes(x = respondent_wall_type, y = liv_count)) +
+    geom_boxplot(alpha = 0) +
+    geom_jitter(alpha = 0.5)
+\end{verbatim}
+\question{Add color to the data points on your boxplot according to whether the respondent is a member of an irrigation association (memb\_assoc).}
+\begin{verbatim}
+    > ggplot(data = interviews_plotting, 
+    aes(x = respondent_wall_type, y = liv_count)) +
++     geom_boxplot(alpha = 0) +
++     geom_jitter(alpha = 0.5)+
++     aes(color = memb_assoc)
+\end{verbatim}
+\question{Create a bar plot showing the proportion of respondents in each village who are or are not part of an irrigation association}
+Need to create the dataset to plot before plotting.
+\begin{verbatim}
+    memb_count_village <- interviews_plotting %>% 
+    filter(!is.na(memb_assoc)) %>% 
+    count(village,memb_assoc) %>% group_by(village) %>% 
+\end{verbatim}
+Then plot the graph
+\begin{verbatim}
+    ggplot(memb_count_village, aes(x=village, y=n, fill=memb_assoc)) +
+    geom_bar(stat = "identity", position = "dodge")
+\end{verbatim}
+The God village had the lowest number of people in an association.
+\question{Experiment with at least two different themes. Build the previous plot using each of those themes. Which do you like best?}
+I experimented with Void, Minimal and Light. Void and minimal are very similar but don't provide much information. Light is my preferred style.
+
+\question{}
+\begin{verbatim}
+    ggplot(percent_items, aes(x=village, 
+    y=percent, fill=village)) + 
+    geom_bar(stat="identity",position="stack") +
+    facet_wrap(~items) +
+    theme_minimal() +
+    scale_fill_brewer(palette="Spectral") +
+    labs(title="Percent of respondents who own items",
+         x="Village Name",
+         y="Percent of Participants")
+         ggsave("data_output/participant_items.png",
+         width = 15, height = 10)
+\end{verbatim}
+\begin{landscape}
+\includegraphics[scale=0.6]{participant}
+\end{landscape}
+\subsection{Learning Journal}
+
+\subsubsection{New Techniques and Commands Learned:}
+\paragraph{R}
+\learning{plot}{command is used to determine the data used for a graph}
+\learning{ggplot}{sets the aesthetics and settings of the graph and how the information is presented}
+\learning{geompoint()}{creates a point based gragh}
+\learning{facet}{allows you to generate multiple plots based on a categorical variable}
+
+\subsubsection{Action Log}
+
+\actionlog{31/10/2019 16:26}
+\intention{Change the colour of only one aspect of the plots}
+\action{I ran the following}
+\begin{verbatim}
+    > ggplot(data = interviews_plotting, 
+      aes(x = respondent_wall_type, y = liv_count)) +
++     geom_boxplot(alpha = 0,) +
++     geom_jitter(alpha = 0.5)+
++     aes(color = memb_assoc)
+\end{verbatim}
+\result{All colours changed instead of just one}
+\solution{Move the colour command to only one part of the plot. E.g.}
+\begin{verbatim}
+    jitter(alpha = 0, aes(color = memb_assoc))
+\end{verbatim}
+\actionlog{31/10/2019 16:46}
+\intention{Plot wall type}
+\action{I ran the following command in the console}
+\begin{verbatim}
+    > ggplot(percent_wall_type, 
+    aes(x = village, y = percent, 
+    fill = memb_assoc)) +
++     geom_bar(stat = "identity", position = "dodge")
+\end{verbatim}
+\result{Following error:}
+\begin{verbatim}
+    Error in FUN(X[[i]], ...) : object 'memb_assoc' not found
+\end{verbatim}
+
+\actionlog{31/10/2019 22:14}
+\intention{Add a graphic to the document in Overleaf}
+\action{Attempted to use the includegraphics command}
+\result{No image inserted}
+\solution{I need to import the includegraphics package}
+
+\actionlog{31/10/2019 22:20}
+\intention{See picture clearly and formatted correctly within the page}
+\action{Used the includegraphics command}
+\result{Picture's original dimensions were too big for the portrait page and couldn't be read with any clarity}
+\solution{I imported the landscape package to place the picture in a landscape page as it better fits its aspect ratio}
+\newpage
+\newweek{}
+
+\subsection{Learning Journal}
+\subsubsection{Action Log}
+
+
+\actionlog{07/11/2019 15:20}
+\intention{Have voyant server automatically creata a corpus from a file hosted on cloudstor}
+\action{Uploaded a file to cloudstor, created a public link and placed this into the serverconfig file}
+\result{Due to javascript on cloudstor voyant server couldn't access the file}
+
+\actionlog{07/11/2019 15:28}
+\intention{Use a file hosted on iLearn as a corpus}
+\action{Set the corpus as}
+\begin{verbatim}
+    https://ilearn.mq.edu.au/pluginfile.php
+    /5795890/mod_resource/content
+    /1/Sword%20-%20Finding%20Time%20to%20Write.pdf
+\end{verbatim}
+\result{Error: Failed attempt to create corpus}
+
+\actionlog{07/11/2019 15:32}
+\intention{Create a corpus with a file hosted by github}
+\action{Edited the server config file to point to the following file}
+\begin{verbatim}
+    https://github.com/MQ-FOAR705/HammondA_Elaboration_II
+    /blob/master/README.txt
+\end{verbatim}
+\result{Success, corpus loaded a single file successfully}
+
+\actionlog{07/11/2019 15:36}
+\intention{Load a corpus hosted by GitHub as a zip file}
+\action{Uploaded a zip file filled with txt files as a corpus}
+\begin{verbatim}
+    https://github.com/MQ-FOAR705/HammondA_Elaboration_II
+    /blob/master/ready.zip
+\end{verbatim}
+\result{Failed attempt to create corpus}
+
+
 \end{document}
